@@ -1,25 +1,32 @@
-import {app} from 'codehooks-js'
-import {crudlify} from 'codehooks-crudlify'
-import { date, object, string } from 'yup';
+import {app} from 'codehooks-js';
+import {crudlify} from 'codehooks-crudlify';
+import { date, object, string, bool } from 'yup';
 
-const flashCardYup = object({
-  front: string().required(),
-  back: string().required(),
-  category: string().required(),
+const todoItemYup = object({
+  content: string().required(),
+  complete: bool().default(false),
+  category: string(),
   createdOn: date().default(() => new Date()),
-})
+});
 
-// test route for https://<PROJECTID>.api.codehooks.io/dev/
-// app.get('/', (req, res) => {
-//   res.send('CRUD server ready')
-// })
-
+// Test endpoint
 app.get("/test", (req, res) => {
   res.json({result: "you did it!"});
 });
 
-// Use Crudlify to create a REST API for any collection
-crudlify(app, {flashCard: flashCardYup})
+// Endpoint for adding a new todo item
+// app.post("/todos", (req, res) => {
+
+// });
+
+// Endpoint for getting a
+
+
+
+
+
+// Create REST API for todo items collection
+crudlify(app, {todos: todoItemYup});
 
 // bind to serverless runtime
 export default app.init();

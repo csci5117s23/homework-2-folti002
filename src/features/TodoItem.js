@@ -2,7 +2,7 @@ import { faSquareCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
-export default function TodoItem({ item }) {
+export default function TodoItem({ todoItem }) {
   const [isChecked, setChecked] = useState(false);
   const maxStringLength = 20;
 
@@ -10,17 +10,19 @@ export default function TodoItem({ item }) {
     setChecked(!isChecked);
   }
 
-  if(item.length > maxStringLength){
-    item = item.substring(0, maxStringLength) + "...";
+  let content = todoItem.content;
+
+  if(content.length > maxStringLength){
+    content = content.substring(0, maxStringLength) + "...";
   }
 
   return (
     <div className="todo-item" onClick={handleClick}>
       <FontAwesomeIcon icon={faSquareCheck} />
       {isChecked ? (
-        <span> <s>{item}</s> </span>
+        <span> <s>{content}</s> </span>
       ) : (
-        <span> {item} </span>
+        <span> {content} </span>
       )
       }
     </div>

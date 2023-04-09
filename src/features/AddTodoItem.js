@@ -5,7 +5,7 @@ export default function AddTodoItem({ onAdd }) {
       <div>
         <form method='post' onSubmit={onAdd}>
           <label>
-            Todo Item: <input name='item' />
+            Todo Item: <input name='content' />
           </label>
           <button type='submit'> Submit new todo item! </button>
         </form>
