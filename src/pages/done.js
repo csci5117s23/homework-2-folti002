@@ -1,8 +1,7 @@
-import Head from 'next/head';
 import Link from 'next/link';
-import { Inter } from 'next/font/google';
 import { useEffect, useState } from 'react';
-import TodoList from './todos/TodoList';
+import TodoList from '../features/TodoList';
+import TopBar from '../features/TopBar';
 
 export default function Todos() {
   const [loading, setLoading] = useState(false);
@@ -14,15 +13,19 @@ export default function Todos() {
     return (<span> Loading... </span>);
   } else {
     return (
-      <div className='container'>
-        { todos ? (
-          <TodoList todos={todos}></TodoList>
-        ) : (
-          <h1> No todo items yet! </h1>
-        )
-        }
-        <Link href='todos'> Back to current todo items! </Link>
-      </div>
+      <>
+        <TopBar> </TopBar>
+        <div className='container'>
+          <h1> Complete Todo Items </h1>
+          { todos ? (
+            <TodoList todos={todos}></TodoList>
+          ) : (
+            <h1> No todo items yet! </h1>
+          )
+          }
+          <Link href='todos'> Back to current todo items! </Link>
+        </div>
+      </>
     );
   }
 }

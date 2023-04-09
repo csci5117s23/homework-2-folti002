@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import TodoList from './todos/TodoList';
+import TodoList from '../features/TodoList';
 
 export default function Todos() {
   const API_ENDPOINT = "https://backend-rnkp.api.codehooks.io/dev/flashCard/";

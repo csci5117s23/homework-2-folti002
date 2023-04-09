@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import Head from 'next/head';
+import TopBar from '../features/TopBar';
 
 export default function Home() {
   return (
@@ -9,6 +11,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <TopBar>  </TopBar>
       <div className='container'>
         <h1> Welcome to your GeoDo List! </h1>
         <h3> Sign in or create an account below! </h3>
