@@ -1,9 +1,9 @@
-import Todo from "./Todo";
+import TodoItem from "./TodoItem";
 
 export default function TodoList({ todos }) {
   console.log(todos);
   const todoList = todos.map((todoItem) =>
-    <Todo item={todoItem.item} ></Todo>
+    <TodoItem item={todoItem.item} ></TodoItem>
   );
 
   return <div> {todoList} </div>;

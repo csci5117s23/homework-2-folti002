@@ -1,8 +1,3 @@
-
-/*
-* Auto generated Codehooks (c) example
-* Install: npm i codehooks-js codehooks-crudlify
-*/
 import {app} from 'codehooks-js'
 import {crudlify} from 'codehooks-crudlify'
 import { date, object, string } from 'yup';
