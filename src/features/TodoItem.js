@@ -1,4 +1,5 @@
 import { faSquareCheck } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
 export default function TodoItem({ item }) {
@@ -15,7 +16,7 @@ export default function TodoItem({ item }) {
 
   return (
     <div className="todo-item" onClick={handleClick}>
-      <i class="fa-square-check"></i>
+      <FontAwesomeIcon icon={faSquareCheck} />
       {isChecked ? (
         <span> <s>{item}</s> </span>
       ) : (

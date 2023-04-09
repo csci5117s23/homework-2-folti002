@@ -6,6 +6,11 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #73A580;
+  margin: auto;
+}
+
 .top-bar {
   text-align: center;
   background-color: #507255;

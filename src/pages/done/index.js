@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import TodoList from '../features/TodoList';
-import TopBar from '../features/TopBar';
+import TodoList from '@/features/TodoList';
+import TopBar from '@/features/NavBar';
 
-export default function Todos() {
+export default function DoneTodos() {
   const [loading, setLoading] = useState(false);
 
   const [todos, setTodos] = useState([{item: "This item is complete!"},

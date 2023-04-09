@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Head from 'next/head';
-import TopBar from '../features/TopBar';
+import TopBar from '../features/NavBar';
 
 export default function Home() {
   return (
@@ -12,13 +12,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <TopBar>  </TopBar>
-      <div className='container'>
-        <h1> Welcome to your GeoDo List! </h1>
-        <h3> Sign in or create an account below! </h3>
-        <button> Sign in/create account </button>
-        <br></br>
-        <Link href='todos'> View your todos </Link>
-      </div>
+      <body>
+        <div className='container'>
+          <h1> Welcome to your GeoDo List! </h1>
+          <h3> Sign in or create an account below! </h3>
+          <button> Sign in/create account </button>
+          <br></br>
+          <Link href='todos'> View your todos </Link>
+        </div>
+      </body>
     </>
   );
 }

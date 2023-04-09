@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import TodoList from '@/features/TodoList';
-import TopBar from '@/features/TopBar';
+import TopBar from '@/features/NavBar';
 import AddTodoItem from '@/features/AddTodoItem';
 
 export default function Todos() {
@@ -42,7 +42,6 @@ export default function Todos() {
       }));
     } else {
       setTodos([{item: formJson.item}]);
-      console.log("Todos set to: ", todos);
     }
   }
 
