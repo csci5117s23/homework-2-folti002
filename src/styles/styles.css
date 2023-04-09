@@ -25,3 +25,8 @@ h3 {
   text-align: center;
   padding: 2rem;
 }
+
+.todo-item {
+  background-color: red;
+  font-size: xx-large;
+}
