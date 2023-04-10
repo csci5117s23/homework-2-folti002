@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
@@ -26,12 +27,10 @@ h3 {
 
 .container {
   background-color: #73A580;
-  font-family: "Roboto", sans-serif;
   text-align: center;
   padding: 2rem;
 }
 
 .todo-item {
-  background-color: red;
   font-size: xx-large;
 }
