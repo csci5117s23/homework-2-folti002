@@ -6,11 +6,18 @@ import TopBar from '@/features/NavBar';
 export default function DoneTodos() {
   const [loading, setLoading] = useState(false);
 
-  const [todos, setTodos] = useState([{item: "This item is complete!"},
-                                      {item: "This one is also complete!"}]);
+  const [todos, setTodos] = useState([{content: "This item is complete!"},
+                                      {content: "This one is also complete!"}]);
 
   if(loading) {
-    return (<span> Loading... </span>);
+    return (
+      <>
+        <TopBar></TopBar>
+        <div className='container'>
+          <span> Loading... </span>
+        </div>
+      </>
+    );
   } else {
     return (
       <>

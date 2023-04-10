@@ -51,9 +51,12 @@ export default function Todos() {
 
   if(loading) {
     return (
-      <div className='container'>
-        <span> Loading... </span>
-      </div>
+      <>
+        <TopBar></TopBar>
+        <div className='container'>
+          <span> Loading... </span>
+        </div>
+      </>
     );
   } else {
     return (
