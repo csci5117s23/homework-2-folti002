@@ -33,5 +33,9 @@ export async function updateOneTodoItem(data){
 
 // Delete a user's todo item
 export async function deleteOneTodoItem(id){
-
+  const response = fetch(`${BASE_URL}/todos/${id}`, {
+    'method': 'DELETE',
+    'headers': {'x-apikey': API_KEY}
+  });
+  return;
 }
