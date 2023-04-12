@@ -5,8 +5,8 @@ import TodoItemLink from "./TodoItemLink";
 
 export default function TodoItem({ todoItem }) {
   const [isChecked, setChecked] = useState(false);
-  const maxStringLength = 20;
-
+  const maxStringLength = 50;
+  
   function handleClick() {
     setChecked(!isChecked);
   }

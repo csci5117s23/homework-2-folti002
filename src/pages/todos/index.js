@@ -3,50 +3,35 @@ import { useEffect, useState } from 'react';
 import TodoList from '@/features/TodoList';
 import TopBar from '@/features/NavBar';
 import AddTodoItem from '@/features/AddTodoItem';
+import { getAllTodoItems, postNewTodoItem } from '@/modules/data';
 
 export default function Todos() {
-  const API_ENDPOINT = "https://backend-rnkp.api.codehooks.io/dev/todos/";
-  const API_KEY = "10772928-f01a-46be-b1b6-a67f7d64d93b";
-
+  // Set state variables and hooks
+  const [newTodoItem, setNewTodoItem] = useState(false);
   const [todos, setTodos] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Fetch todos upon opening the page
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(API_ENDPOINT, {
-        'method':'GET',
-        'headers': {'x-apikey': API_KEY}
-      });
-      const data = await response.json()
-      // update state -- configured earlier.
+    async function fetchData() {
+      // Call data file to send HTTP request and update state
+      const data = await getAllTodoItems();
       setTodos(data);
       setLoading(false);
+      setNewTodoItem(false);
     }
     fetchData();
-  }, []);
+  }, [newTodoItem]);
 
-  function handleNewTodoItem(e) {
+  // Add new entry into the database and reload list of todos
+  async function handleNewTodoItem(e) {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const formJson = Object.fromEntries(formData.entries());
-
-    // Enter new todo item into our database
-    // const response = fetch(API_ENDPOINT, {
-    //   'method': 'POST',
-    //   'headers': {'x-apikey': API_KEY},
-    //   'body': formJson
-    // });
-
-    // console.log(response);
-
-    if(todos) {
-      setTodos(todos.concat({
-        content: formJson.content
-      }));
-    } else {
-      setTodos([{content: formJson.content}]);
-    }
+    // Call data file to add new item and reload list of todo items
+    await postNewTodoItem(formJson);
+    setNewTodoItem(true);
   }
 
   if(loading) {
