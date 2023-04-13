@@ -14,7 +14,6 @@ export default function TodoItem({ todoItem }) {
     setChecked(!isChecked);
   }
 
-
   function changeIcon() {
     setIsHovering(!isHovering);
   }
@@ -31,17 +30,26 @@ export default function TodoItem({ todoItem }) {
 
   return (
     <>
-      <Link href='/todo' onClick={handleClick}>
-        { isHovering ? (
-          <FontAwesomeIcon icon={faCircleCheck} onMouseEnter={changeIcon} style={{color: "#3a527f"}}/>
-        ) : (
-          <FontAwesomeIcon icon={faCircle} onMouseLeave={changeIcon} style={{color: "#3a527f"}}/>
-        )}
-      </Link>
+      {/* Icon to handle setting item as complete */}
+      <div className='column is-one-quarter todo-item'>
+        <Link href='/todos' onClick={handleClick}>
+          { isHovering ? (
+            <FontAwesomeIcon icon={faCircleCheck} onMouseEnter={changeIcon} style={{color: "#3a527f"}}/>
+          ) : (
+            <FontAwesomeIcon icon={faCircle} onMouseLeave={changeIcon} style={{color: "#3a527f"}}/>
+          )}
+        </Link>
+      </div>
 
-      <span> {content} </span>
-      
-      <TodoItemLink href={itemLink}></TodoItemLink>
+      {/* Content of todo item */}
+      <div className='column is-half todo-item'>
+        <p> {content} </p>
+      </div>
+
+      {/* Edit todo item button */}
+      <div className='column is-one-quarter todo-item'>
+        <TodoItemLink href={itemLink}></TodoItemLink>
+      </div>
     </>
   );
 }

@@ -1,6 +1,5 @@
 import MyHead from '@/features/MyHead';
 import NavBar from '@/features/NavBar';
-import Link from 'next/link'
 
 export default function error() {
   return (

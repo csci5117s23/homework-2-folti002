@@ -67,15 +67,24 @@ export default function Todos() {
         <MyHead />
         <NavBar />
         <div className='todolist-container'>
-          <h1 className='title'> Todos </h1>
+          <h1 className='title'> Your GeoDo List: </h1>
 
+          {/* If not loading, list all todos! */}
           { loading ? (
             <span> Loading... </span>
           ) : (
             <>
               {/* Display todos */}
               { todos ? (
-                <TodoList todos={todos} />
+                <>
+                  {/* Header for group of todos */}
+                  <div className='columns is-mobile'>
+                    <div className='column is-one-quarter small-todo-item'> Complete? </div>
+                    <div className='column is-one-half small-todo-item'> Content </div>
+                    <div className='column is-one-quarter small-todo-item'> Edit </div>
+                  </div>
+                  <TodoList todos={todos} />
+                </>
               ) : (
                 <h1 className='subtitle'> No todo items yet! </h1>
               )

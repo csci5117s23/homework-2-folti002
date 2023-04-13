@@ -39,3 +39,12 @@ h3 {
 .todo-item {
   font-size: xx-large;
 }
+
+.small-todo-item {
+  font-size: large;
+}
+
+.column-container {
+  background-color: #f59b64;
+  border-radius: 5px;
+}

@@ -5,5 +5,5 @@ export default function TodoList({ todos }) {
     <TodoItem key={todoItem._id} todoItem={todoItem} ></TodoItem>
   );
 
-  return <div> {todoList} </div>;
+  return <div className='columns is-mobile column-container'> {todoList} </div>;
 }
