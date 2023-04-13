@@ -4,6 +4,7 @@ import TodoList from '@/features/TodoList';
 import NavBar from '@/features/NavBar';
 import AddTodoItem from '@/features/AddTodoItem';
 import { getAllTodoItems, postNewTodoItem } from '@/modules/data';
+import MyHead from '@/features/MyHead';
 
 export default function Todos() {
   // Set state variables and hooks
@@ -15,8 +16,10 @@ export default function Todos() {
 
   // Handle authorization
   useEffect(() => {
-    
-  });
+    async function handleAuth() {
+      const token = await getToken({ template: 'codehooks' });
+    }
+  }, []);
 
   // Fetch todos upon opening the page and every time a new item is added
   useEffect(() => {
@@ -44,6 +47,7 @@ export default function Todos() {
   if(loading) {
     return (
       <>
+        <MyHead />
         <NavBar></NavBar>
         <div className='container'>
           <span> Loading... </span>
@@ -53,6 +57,7 @@ export default function Todos() {
   } else {
     return (
       <>
+        <MyHead />
         <NavBar> </NavBar>
         <div className='container'>
           <h1 className='title'> Todos </h1>

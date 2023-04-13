@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import TodoList from '@/features/TodoList';
 import NavBar from '@/features/NavBar';
+import MyHead from '@/features/MyHead';
 import { getAllDoneTodoItems } from '@/modules/data';
 
 export default function DoneTodos() {
@@ -22,6 +23,7 @@ export default function DoneTodos() {
   if(loading) {
     return (
       <>
+        <MyHead />
         <NavBar></NavBar>
         <div className='container'>
           <span> Loading... </span>
@@ -31,6 +33,7 @@ export default function DoneTodos() {
   } else {
     return (
       <>
+        <MyHead />
         <NavBar> </NavBar>
         <div className='container'>
           <h1> Complete Todo Items </h1>
