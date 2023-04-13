@@ -1,6 +1,7 @@
 import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import Image from 'next/image';
 import Link from 'next/link';
+import MySignInButton from './MySignInButton';
 
 export default function NavBar() {
   return (
@@ -29,18 +30,17 @@ export default function NavBar() {
             <Link href='done' id='bright-hover' className='navbar-item'>
               Complete todos
             </Link>
+
+            <Link href='/' id='bright-hover' className='navbar-item'>
+              Categories
+            </Link>
           </div>
 
+          {/* Sign-in button or user button if signed in */}
           <div className='navbar-end'>
             <div className='navbar-item'>
               <SignedOut>
-                <div>
-                  <SignInButton mode="modal">
-                    <button className='button'>
-                      Sign in 
-                    </button>
-                  </SignInButton>
-                </div>
+                <MySignInButton />
               </SignedOut>
               <SignedIn>
                 <div>
