@@ -1,4 +1,4 @@
-import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -34,10 +34,12 @@ export default function NavBar() {
           <div className='navbar-end'>
             <div className='navbar-item'>
               <SignedOut>
-                <div className='buttons'>
-                  <Link href='/' id='bright-hover' className='button is-light'>
-                    Log in
-                  </Link>
+                <div>
+                  <SignInButton mode="modal">
+                    <button className='button'>
+                      Sign in 
+                    </button>
+                  </SignInButton>
                 </div>
               </SignedOut>
               <SignedIn>
