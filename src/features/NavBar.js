@@ -1,3 +1,4 @@
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -32,11 +33,18 @@ export default function NavBar() {
 
           <div className='navbar-end'>
             <div className='navbar-item'>
-              <div className='buttons'>
-                <Link href='/' id='bright-hover' className='button is-light'>
-                  Log in
-                </Link>
-              </div>
+              <SignedOut>
+                <div className='buttons'>
+                  <Link href='/' id='bright-hover' className='button is-light'>
+                    Log in
+                  </Link>
+                </div>
+              </SignedOut>
+              <SignedIn>
+                <div>
+                  <UserButton />
+                </div>
+              </SignedIn>
             </div>
           </div>
         </div>

@@ -10,8 +10,15 @@ export default function Todos() {
   const [newTodoItem, setNewTodoItem] = useState(false);
   const [todos, setTodos] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [token, setToken] = useState(null);
+  const { isLoaded, userId, sessionId, getToken } = useAuth();
 
-  // Fetch todos upon opening the page
+  // Handle authorization
+  useEffect(() => {
+    
+  });
+
+  // Fetch todos upon opening the page and every time a new item is added
   useEffect(() => {
     async function fetchData() {
       // Call data file to send HTTP request and update state
@@ -48,11 +55,13 @@ export default function Todos() {
       <>
         <NavBar> </NavBar>
         <div className='container'>
-          <h1> Todos </h1>
+          <h1 className='title'> Todos </h1>
+
+          {/* Display todos */}
           { todos ? (
             <TodoList todos={todos}></TodoList>
           ) : (
-            <h1> No todo items yet! </h1>
+            <h1 className='subtitle'> No todo items yet! </h1>
           )
           }
 

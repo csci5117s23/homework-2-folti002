@@ -4,17 +4,17 @@ const BASE_URL = 'https://backend-rnkp.api.codehooks.io/dev';
 const API_KEY= '10772928-f01a-46be-b1b6-a67f7d64d93b';
 
 // Get all todo items for a user
-export async function getAllTodoItems(){
+export async function getAllTodoItems(authToken){
   const response = await fetch(`${BASE_URL}/todos?complete=false`, {
     'method': 'GET',
-    'headers': {'x-apikey': API_KEY}
+    'headers': {'Authorization': 'Bearer ' + authToken}
   });
   const data = await response.json();
   return data;
 }
 
 // Get all done todo items for a user
-export async function getAllDoneTodoItems(){
+export async function getAllDoneTodoItems(authToken){
   const response = await fetch(`${BASE_URL}/todos?complete=true`, {
     'method': 'GET',
     'headers': {'x-apikey': API_KEY}
