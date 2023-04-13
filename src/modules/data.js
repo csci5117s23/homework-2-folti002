@@ -5,7 +5,7 @@ const BASE_URL = 'https://backend-rnkp.api.codehooks.io/dev';
 
 // Get all todo items for a user
 export async function getAllTodoItems(userId, authToken){
-  const response = await fetch(`${BASE_URL}/todos?userId=${userId}&complete=false&sort=-createdOn`, {
+  const response = await fetch(`${BASE_URL}/todos?user_id=${userId}&complete=false&sort=-createdOn`, {
     'method': 'GET',
     'headers': {'Authorization': 'Bearer ' + authToken}
   });
@@ -15,7 +15,7 @@ export async function getAllTodoItems(userId, authToken){
 
 // Get all done todo items for a user
 export async function getAllDoneTodoItems(userId, authToken){
-  const response = await fetch(`${BASE_URL}/todos?userId=${userId}&complete=true&sort=-createdOn`, {
+  const response = await fetch(`${BASE_URL}/todos?user_id=${userId}&complete=true&sort=-createdOn`, {
     'method': 'GET',
     'headers': {'Authorization': 'Bearer ' + authToken}
   });
@@ -25,6 +25,7 @@ export async function getAllDoneTodoItems(userId, authToken){
 
 // Post a new todo item for a user
 export async function postNewTodoItem(data, userId, authToken){
+  console.log(data);
   const response = fetch(`${BASE_URL}/todos`, {
     'method': 'POST',
     'headers': {

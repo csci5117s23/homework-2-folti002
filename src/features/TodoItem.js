@@ -10,7 +10,6 @@ export default function TodoItem({ todoItem }) {
   // If a user clicks on the finished button, 
   function handleClick() {
     setChecked(!isChecked);
-
   }
 
   // Grab necessary data from todo item prop and set up link

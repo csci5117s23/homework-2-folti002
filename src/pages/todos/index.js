@@ -53,6 +53,9 @@ export default function Todos() {
     // Grab JWT from Clerk
     const token = await getToken({ template: 'codehooks' });
 
+    // Update formJson to include user id
+    formJson.user_id = userId;
+
     // Call data file to add new item and reload list of todo items
     await postNewTodoItem(formJson, userId, token);
     setNewTodoItem(true);
