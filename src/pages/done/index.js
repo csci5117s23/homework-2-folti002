@@ -25,7 +25,7 @@ export default function DoneTodos() {
       <>
         <MyHead />
         <NavBar></NavBar>
-        <div className='container'>
+        <div className='todolist-container'>
           <span> Loading... </span>
         </div>
       </>
@@ -35,7 +35,7 @@ export default function DoneTodos() {
       <>
         <MyHead />
         <NavBar> </NavBar>
-        <div className='container'>
+        <div className='todolist-container'>
           <h1> Complete Todo Items </h1>
           { todos ? (
             <TodoList todos={todos}></TodoList>

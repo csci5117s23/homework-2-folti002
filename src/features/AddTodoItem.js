@@ -4,9 +4,9 @@ export default function AddTodoItem({ onAdd }) {
       <div>
         <form method='post' onSubmit={onAdd}>
           <label>
-            Submit new todo item: <input className='input is-primary' name='content' type='text' placeholder='Text input' />
+            <input className='input is-primary' name='content' type='text' placeholder='Text input' />
           </label>
-          <button type='submit'> Submit new todo item! </button>
+          <button className='button' type='submit'> Submit new todo item! </button>
         </form>
       </div>
     </>

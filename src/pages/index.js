@@ -35,7 +35,7 @@ export default function Home() {
       {/* If signed out, render home page */}
       <SignedOut>
         <NavBar />
-        <div className='container'>
+        <div className='todolist-container'>
           <Image src='/GeoDoListLogo.png' width={400} height={400} alt='GeoDo List logo'/>
           <h1 className='title'> Welcome to your GEOgraphy toDO List! </h1>
           {/* <h3 className='subtitle'> { userCount } people are using GeoDo List. </h3> */}

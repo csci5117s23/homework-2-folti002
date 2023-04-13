@@ -66,7 +66,7 @@ export default function Todos() {
       <SignedIn>
         <MyHead />
         <NavBar />
-        <div className='container'>
+        <div className='todolist-container'>
           <h1 className='title'> Todos </h1>
 
           { loading ? (

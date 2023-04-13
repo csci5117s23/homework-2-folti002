@@ -5,9 +5,6 @@ import Link from 'next/link';
 
 export default function TodoItemLink({ href }) {
   const router = useRouter();
-  const style = {
-    color: router.asPath === href ? 'red' : 'black',
-  };
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -15,8 +12,8 @@ export default function TodoItemLink({ href }) {
   };
 
   return (
-    <Link href={href} onClick={handleClick} style={style}>
-      <FontAwesomeIcon icon={faPenToSquare} />
+    <Link href={href} onClick={handleClick} >
+      <FontAwesomeIcon icon={faPenToSquare} style={{color: "#3a527f"}}/>
     </Link>
   );
 }
