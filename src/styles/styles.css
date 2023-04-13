@@ -6,16 +6,26 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
+  /* background-color: #f4f3ea; */
+}
+
+html {
+  background-color: #f4f3ea;
 }
 
 body {
-  background-color: #73A580;
+  background-color: #f4f3ea;
   margin: auto;
 }
 
 .top-bar {
-  text-align: center;
-  background-color: #507255;
+  background-color: #f48c4c;
+  margin: auto;
+}
+
+#bright-hover:hover {
+  background-color: #f59b64;
+  color: inherit;
 }
 
 h1 {
@@ -27,7 +37,6 @@ h3 {
 }
 
 .container {
-  background-color: #73A580;
   text-align: center;
   padding: 2rem;
 }

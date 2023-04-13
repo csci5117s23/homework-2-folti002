@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import TodoList from '@/features/TodoList';
-import TopBar from '@/features/NavBar';
+import NavBar from '@/features/NavBar';
 import AddTodoItem from '@/features/AddTodoItem';
 import { getAllTodoItems, postNewTodoItem } from '@/modules/data';
 
@@ -37,7 +37,7 @@ export default function Todos() {
   if(loading) {
     return (
       <>
-        <TopBar></TopBar>
+        <NavBar></NavBar>
         <div className='container'>
           <span> Loading... </span>
         </div>
@@ -46,7 +46,7 @@ export default function Todos() {
   } else {
     return (
       <>
-        <TopBar> </TopBar>
+        <NavBar> </NavBar>
         <div className='container'>
           <h1> Todos </h1>
           { todos ? (
@@ -59,7 +59,7 @@ export default function Todos() {
           {/* Text input for new todo item */}
           <AddTodoItem onAdd={handleNewTodoItem}> </AddTodoItem>
 
-          <Link href='done' > View complete todo items </Link>
+          <Link href='done'> View complete todo items </Link>
         </div>
       </>
     );

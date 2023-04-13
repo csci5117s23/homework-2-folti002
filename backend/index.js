@@ -14,17 +14,6 @@ app.get("/test", (req, res) => {
   res.json({result: "you did it!"});
 });
 
-// Endpoint for adding a new todo item
-// app.post("/todos", (req, res) => {
-
-// });
-
-// Endpoint for getting a
-
-
-
-
-
 // Create REST API for todo items collection
 crudlify(app, {todos: todoItemYup});
 

@@ -7,14 +7,18 @@ export default function TodoItem({ todoItem }) {
   const [isChecked, setChecked] = useState(false);
   const maxStringLength = 50;
   
+  // If a user clicks on the finished button, 
   function handleClick() {
     setChecked(!isChecked);
+
   }
 
+  // Grab necessary data from todo item prop and set up link
   let content = todoItem.content;
   const id = todoItem._id;
   const itemLink = 'todos/' + id;
 
+  // Shorten length of content if too long
   if(content.length > maxStringLength){
     content = content.substring(0, maxStringLength) + "...";
   }

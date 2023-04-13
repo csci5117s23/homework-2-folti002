@@ -5,7 +5,17 @@ const API_KEY= '10772928-f01a-46be-b1b6-a67f7d64d93b';
 
 // Get all todo items for a user
 export async function getAllTodoItems(){
-  const response = await fetch(`${BASE_URL}/todos`, {
+  const response = await fetch(`${BASE_URL}/todos?complete=false`, {
+    'method': 'GET',
+    'headers': {'x-apikey': API_KEY}
+  });
+  const data = await response.json();
+  return data;
+}
+
+// Get all done todo items for a user
+export async function getAllDoneTodoItems(){
+  const response = await fetch(`${BASE_URL}/todos?complete=true`, {
     'method': 'GET',
     'headers': {'x-apikey': API_KEY}
   });
@@ -28,7 +38,15 @@ export async function postNewTodoItem(data){
 
 // Update a todo item for a user
 export async function updateOneTodoItem(data){
-
+  const response = fetch(`${BASE_URL}/todos`, {
+    'method': 'PUT',
+    'headers': {
+      'x-apikey': API_KEY,
+      'Content-Type': 'application/json',
+    },
+    'body': JSON.stringify(data)
+  });
+  return;
 }
 
 // Delete a user's todo item
