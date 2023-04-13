@@ -1,5 +1,6 @@
 import { ClerkProvider, RedirectToSignIn, SignedIn, SignedOut } from '@clerk/nextjs';
 import { useRouter } from 'next/router';
+import HomePageRedirect from '@/features/HomePageRedirect';
 import '../styles/styles.css';
 
 const publicPages = ["/"];
@@ -22,7 +23,7 @@ export default function App({ Component, pageProps }) {
             <Component {...pageProps} />
           </SignedIn>
           <SignedOut>
-            <RedirectToSignIn />
+            <HomePageRedirect />
           </SignedOut>
         </>
       )}

@@ -3,11 +3,15 @@ import { useEffect, useState } from 'react';
 import TodoList from '@/features/TodoList';
 import NavBar from '@/features/NavBar';
 import AddTodoItem from '@/features/AddTodoItem';
-import { getAllTodoItems, postNewTodoItem } from '@/modules/data';
+import HomePageRedirect from '@/features/HomePageRedirect';
 import MyHead from '@/features/MyHead';
+import { getAllTodoItems, postNewTodoItem } from '@/modules/data';
+import { SignedIn, SignedOut, useAuth } from '@clerk/nextjs';
+import { useRouter } from 'next/router';
 
 export default function Todos() {
   // Set state variables and hooks
+  const router = useRouter();
   const [newTodoItem, setNewTodoItem] = useState(false);
   const [todos, setTodos] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -17,15 +21,21 @@ export default function Todos() {
   // Handle authorization
   useEffect(() => {
     async function handleAuth() {
-      const token = await getToken({ template: 'codehooks' });
+      if(!isLoaded || !userId) {
+        router.push('/');
+      }
     }
-  }, []);
+    handleAuth();
+  });
 
   // Fetch todos upon opening the page and every time a new item is added
   useEffect(() => {
     async function fetchData() {
+      // Grab JWT token from Clerk
+      const token = await getToken({ template: 'codehooks' });
+
       // Call data file to send HTTP request and update state
-      const data = await getAllTodoItems();
+      const data = await getAllTodoItems(token, userId);
       setTodos(data);
       setLoading(false);
       setNewTodoItem(false);
@@ -48,7 +58,7 @@ export default function Todos() {
     return (
       <>
         <MyHead />
-        <NavBar></NavBar>
+        <NavBar />
         <div className='container'>
           <span> Loading... </span>
         </div>
@@ -57,24 +67,30 @@ export default function Todos() {
   } else {
     return (
       <>
-        <MyHead />
-        <NavBar> </NavBar>
-        <div className='container'>
-          <h1 className='title'> Todos </h1>
+        <SignedIn>
+          <MyHead />
+          <NavBar />
+          <div className='container'>
+            <h1 className='title'> Todos </h1>
 
-          {/* Display todos */}
-          { todos ? (
-            <TodoList todos={todos}></TodoList>
-          ) : (
-            <h1 className='subtitle'> No todo items yet! </h1>
-          )
-          }
+            {/* Display todos */}
+            { todos ? (
+              <TodoList todos={todos} />
+            ) : (
+              <h1 className='subtitle'> No todo items yet! </h1>
+            )
+            }
 
-          {/* Text input for new todo item */}
-          <AddTodoItem onAdd={handleNewTodoItem}> </AddTodoItem>
+            {/* Text input for new todo item */}
+            <AddTodoItem onAdd={handleNewTodoItem} />
 
-          <Link href='done'> View complete todo items </Link>
-        </div>
+            <Link href='done'> View complete todo items </Link>
+          </div>
+        </SignedIn>
+
+        <SignedOut>
+          <HomePageRedirect />
+        </SignedOut>
       </>
     );
   }

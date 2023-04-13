@@ -1,11 +1,11 @@
 // Contains all REST api calls 
 
 const BASE_URL = 'https://backend-rnkp.api.codehooks.io/dev';
-const API_KEY= '10772928-f01a-46be-b1b6-a67f7d64d93b';
+// const API_KEY= '10772928-f01a-46be-b1b6-a67f7d64d93b';
 
 // Get all todo items for a user
-export async function getAllTodoItems(authToken){
-  const response = await fetch(`${BASE_URL}/todos?complete=false&sort=-createdOn`, {
+export async function getAllTodoItems(authToken, userId){
+  const response = await fetch(`${BASE_URL}/todos?userId=${userId}&complete=false&sort=-createdOn`, {
     'method': 'GET',
     'headers': {'Authorization': 'Bearer ' + authToken}
   });
@@ -14,21 +14,21 @@ export async function getAllTodoItems(authToken){
 }
 
 // Get all done todo items for a user
-export async function getAllDoneTodoItems(authToken){
-  const response = await fetch(`${BASE_URL}/todos?complete=true&sort=-createdOn`, {
+export async function getAllDoneTodoItems(authToken, userId){
+  const response = await fetch(`${BASE_URL}/todos?userId=${userId}&complete=true&sort=-createdOn`, {
     'method': 'GET',
-    'headers': {'x-apikey': API_KEY}
+    'headers': {'Authorization': 'Bearer ' + authToken}
   });
   const data = await response.json();
   return data;
 }
 
 // Post a new todo item for a user
-export async function postNewTodoItem(data){
+export async function postNewTodoItem(data, authToken){
   const response = fetch(`${BASE_URL}/todos`, {
     'method': 'POST',
     'headers': {
-      'x-apikey': API_KEY,
+      'Authorization': 'Bearer ' + authToken,
       'Content-Type': 'application/json',
     },
     'body': JSON.stringify(data)
@@ -37,11 +37,11 @@ export async function postNewTodoItem(data){
 }
 
 // Update a todo item for a user
-export async function updateOneTodoItem(data){
+export async function updateOneTodoItem(data, authToken){
   const response = fetch(`${BASE_URL}/todos`, {
     'method': 'PUT',
     'headers': {
-      'x-apikey': API_KEY,
+      'Authorization': 'Bearer ' + authToken,
       'Content-Type': 'application/json',
     },
     'body': JSON.stringify(data)
@@ -50,10 +50,10 @@ export async function updateOneTodoItem(data){
 }
 
 // Delete a user's todo item
-export async function deleteOneTodoItem(id){
-  const response = fetch(`${BASE_URL}/todos/${id}`, {
+export async function deleteOneTodoItem(todoItemId, userId, authToken){
+  const response = fetch(`${BASE_URL}/todos/${todoItemId}`, {
     'method': 'DELETE',
-    'headers': {'x-apikey': API_KEY}
+    'headers': {'Authorization': 'Bearer ' + authToken}
   });
   return;
 }
