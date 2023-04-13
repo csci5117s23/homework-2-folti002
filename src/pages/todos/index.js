@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import TodoList from '@/features/TodoList';
 import NavBar from '@/features/NavBar';
@@ -15,10 +14,10 @@ export default function Todos() {
   const [newTodoItem, setNewTodoItem] = useState(false);
   const [todos, setTodos] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [token, setToken] = useState(null);
   const { isLoaded, userId, sessionId, getToken } = useAuth();
 
-  // Handle authorization
+  // Handle authorization - this if statement probably won't happen since
+  // entire app is wrapped in Clerk's provider component
   useEffect(() => {
     async function handleAuth() {
       if(!isLoaded || !userId) {
@@ -31,11 +30,11 @@ export default function Todos() {
   // Fetch todos upon opening the page and every time a new item is added
   useEffect(() => {
     async function fetchData() {
-      // Grab JWT token from Clerk
+      // Grab JWT from Clerk
       const token = await getToken({ template: 'codehooks' });
 
-      // Call data file to send HTTP request and update state
-      const data = await getAllTodoItems(token, userId);
+      // Call REST api and update state
+      const data = await getAllTodoItems(userId, token);
       setTodos(data);
       setLoading(false);
       setNewTodoItem(false);
@@ -45,53 +44,51 @@ export default function Todos() {
 
   // Add new entry into the database and reload list of todos
   async function handleNewTodoItem(e) {
+    // Grab data from form submission
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const formJson = Object.fromEntries(formData.entries());
+
+    // Grab JWT from Clerk
+    const token = await getToken({ template: 'codehooks' });
+
     // Call data file to add new item and reload list of todo items
-    await postNewTodoItem(formJson);
+    await postNewTodoItem(formJson, userId, token);
     setNewTodoItem(true);
   }
-
-  if(loading) {
-    return (
-      <>
+  
+  return (
+    <>
+      <SignedIn>
         <MyHead />
         <NavBar />
         <div className='container'>
-          <span> Loading... </span>
-        </div>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <SignedIn>
-          <MyHead />
-          <NavBar />
-          <div className='container'>
-            <h1 className='title'> Todos </h1>
+          <h1 className='title'> Todos </h1>
 
-            {/* Display todos */}
-            { todos ? (
-              <TodoList todos={todos} />
-            ) : (
-              <h1 className='subtitle'> No todo items yet! </h1>
+          { loading ? (
+            <span> Loading... </span>
+          ) : (
+            <>
+              {/* Display todos */}
+              { todos ? (
+                <TodoList todos={todos} />
+              ) : (
+                <h1 className='subtitle'> No todo items yet! </h1>
+              )
+              }
+
+              {/* Text input for new todo item */}
+              <AddTodoItem onAdd={handleNewTodoItem} />
+            </>
             )
-            }
+          }
+        </div>
+      </SignedIn>
 
-            {/* Text input for new todo item */}
-            <AddTodoItem onAdd={handleNewTodoItem} />
-
-            <Link href='done'> View complete todo items </Link>
-          </div>
-        </SignedIn>
-
-        <SignedOut>
-          <HomePageRedirect />
-        </SignedOut>
-      </>
-    );
-  }
+      <SignedOut>
+        <HomePageRedirect />
+      </SignedOut>
+    </>
+  );
 }
