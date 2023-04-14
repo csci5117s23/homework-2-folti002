@@ -50,13 +50,15 @@ export default function TodoItem({ todoItem }) {
     <>
       {/* Icon to handle setting item as complete */}
       <div className='column is-one-quarter todo-item'>
-        <Link href='/todos' onClick={handleClick}>
           { isComplete ? (
-            <FontAwesomeIcon icon={faCircleCheck} style={{color: "#3a527f"}}/>
+            <Link href='/done' onClick={handleClick}>
+              <FontAwesomeIcon icon={faCircleCheck} style={{color: "#3a527f"}}/>
+            </Link>
           ) : (
-            <FontAwesomeIcon icon={faCircle} style={{color: "#3a527f"}}/>
+            <Link href='/todos' onClick={handleClick}>
+              <FontAwesomeIcon icon={faCircle} style={{color: "#3a527f"}}/>
+            </Link>
           )}
-        </Link>
       </div>
 
       {/* Content of todo item */}
