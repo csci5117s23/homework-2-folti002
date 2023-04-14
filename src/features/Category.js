@@ -1,13 +1,18 @@
 import { useAuth } from '@clerk/nextjs';
 import CategoryLink from './CategoryLink';
 
-export default function Category({ categoryData }) {
+export default function Category({ categoryData, isDone }) {
   const maxStringLength = 50;
   const { getToken } = useAuth();
 
   // Set up link to category page for this category and grab name
   const id = categoryData._id;
-  const categoryLink = '/todos/categories/' + id;
+  let categoryLink = '/';
+  if(!isDone) {
+    categoryLink = '/todos/categories/' + id;
+  } else {
+    categoryLink = '/done/' + id;
+  }
   let categoryName = categoryData.name;
 
   // Slice long category names

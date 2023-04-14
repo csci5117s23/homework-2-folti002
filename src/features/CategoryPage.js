@@ -1,24 +1,31 @@
-import { useRouter } from "next/router";
 import TodoList from "./TodoList";
 
-export default function CategoryPage({ todoItemsForCategory, categoryName }) {
-  const router = useRouter();
-
+export default function CategoryPage({ todoItemsForCategory, categoryName, isDone }) {
   // If there is no data, go to error page
   if(!todoItemsForCategory) {
     return null;
   } else if(todoItemsForCategory.length === 0) {
     return (
-      <h1>
+      <>
         <h1 className='title'> {categoryName} </h1>
-        <p> No data in this category yet! </p>
-      </h1>
+        { isDone? (
+          <h4 className='subtitle'> Done GeoDo Items </h4>
+        ) : (
+          <h4 className='subtitle'> Incomplete GeoDo Items </h4>
+        )}
+        <p> No GeoDo items in this category yet! </p>
+      </>
     );
   }
 
   return (
     <>
       <h1 className='title'> {categoryName} </h1>
+      { isDone? (
+        <h4 className='subtitle'> Done GeoDo Items! </h4>
+      ) : (
+        <h4 className='subtitle'> Incomplete GeoDo Items! </h4>
+      )}
       {/* Display todos */}
       { todoItemsForCategory.length !== 0 ? (
         <>

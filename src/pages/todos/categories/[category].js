@@ -50,7 +50,7 @@ export default function SingleCategoryPage() {
         ) : (
           <>
             <div className='todolist-container'>
-              <CategoryPage todoItemsForCategory={data} categoryName={categoryName}/>
+              <CategoryPage todoItemsForCategory={data} categoryName={categoryName} isDone={false} />
             </div>
           </>
         )}

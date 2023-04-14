@@ -1,4 +1,4 @@
-import { getOneCategory, getTodoItemsForCategory } from "@/modules/data";
+import { getOneCategory, getDoneItemsForCategory } from "@/modules/data";
 import { useRouter } from "next/router";
 import CategoryPage from "@/features/CategoryPage";
 import MyHead from "@/features/MyHead";
@@ -9,12 +9,13 @@ import { useState, useEffect } from "react";
 
 export default function SingleCategoryPageWithDoneItems() {
   const router = useRouter();
-  const { id } = router.query;
+  const category = router.query;
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
+  const [categoryName, setCategoryName] = useState('');
   const { userId, getToken } = useAuth();
 
-  // Grab all todo items pertaining to this category
+  // Grab all done todo items pertaining to this category
   useEffect(() => {
     async function fetchData() {
       // Grab JWT from Clerk
@@ -22,21 +23,20 @@ export default function SingleCategoryPageWithDoneItems() {
 
       // Check if this category id exists!
       // If not, redirect to error page
-      console.log(userId, id, token);
-      const categoryData = await getOneCategory(userId, id, token);
-      console.log(categoryData);
+      const categoryData = await getOneCategory(category.category, token);
       if(categoryData.length === 0){
         router.push('/404');
         return null;
       }
+      setCategoryName(categoryData[0].name);
 
       // Call REST api and update state
-      const response = await getTodoItemsForCategory(userId, id, token);
+      const response = await getDoneItemsForCategory(userId, category.category, token);
       setData(response);
       setLoading(false);
     }
     fetchData();
-  }, [data]);
+  }, []);
 
   return (
     <>
@@ -50,7 +50,7 @@ export default function SingleCategoryPageWithDoneItems() {
         ) : (
           <>
             <div className='todolist-container'>
-              <CategoryPage itemData={data}/>
+              <CategoryPage todoItemsForCategory={data} categoryName={categoryName} isDone={true}/>
             </div>
           </>
         )}

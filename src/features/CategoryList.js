@@ -1,7 +1,7 @@
 import AddCategory from "./AddCategory";
 import Category from "./Category";
 
-export default function CategoryList({ loading, categories, handleNewCategory }) {
+export default function CategoryList({ loading, categories, handleNewCategory, isDone }) {
   if(categories === null){
     return (
       <>
@@ -15,7 +15,7 @@ export default function CategoryList({ loading, categories, handleNewCategory })
   }
   const categoryList = categories.map((category) =>
     <div className='column-container'>
-      <Category key={category._id} categoryData={category} />
+      <Category key={category._id} categoryData={category} isDone={isDone}/>
     </div>
   );
 

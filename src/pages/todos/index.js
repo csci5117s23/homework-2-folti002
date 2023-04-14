@@ -104,6 +104,7 @@ export default function Todos() {
           loading={loading}
           categories={categories}
           handleNewCategory={handleNewCategory} 
+          isDone={false}
         />
       </div>
     </>

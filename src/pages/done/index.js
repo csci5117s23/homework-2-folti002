@@ -72,6 +72,7 @@ export default function DoneTodos() {
         loading={loading}
         categories={categories}
         handleNewCategory={handleNewCategory} 
+        isDone={true}
       />
     </div>
   </>
