@@ -74,8 +74,8 @@ export async function deleteOneTodoItem(todoItemId, authToken){
 // FOR CATEGORIES
 
 // Get single category by id
-export async function getOneCategory(userId, categoryId, authToken){
-  const response = await fetch(`${BASE_URL}/categories?user_id=${userId}&_id=${categoryId}`, {
+export async function getOneCategory(categoryId, authToken){
+  const response = await fetch(`${BASE_URL}/categories?_id=${categoryId}`, {
     'method': 'GET',
     'headers': {'Authorization': 'Bearer ' + authToken}
   });

@@ -9,9 +9,10 @@ import { useState, useEffect } from "react";
 
 export default function SingleCategoryPage() {
   const router = useRouter();
-  const { id } = router.query;
+  const category = router.query;
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
+  const [categoryName, setCategoryName] = useState('');
   const { userId, getToken } = useAuth();
 
   // Grab all todo items pertaining to this category
@@ -22,21 +23,21 @@ export default function SingleCategoryPage() {
 
       // Check if this category id exists!
       // If not, redirect to error page
-      console.log(userId, id, token);
-      const categoryData = await getOneCategory(userId, id, token);
-      console.log(categoryData);
+      const categoryData = await getOneCategory(category.category, token);
       if(categoryData.length === 0){
         router.push('/404');
         return null;
       }
+      console.log(categoryData);
+      setCategoryName(categoryData[0].name);
 
       // Call REST api and update state
-      const response = await getTodoItemsForCategory(userId, id, token);
+      const response = await getTodoItemsForCategory(userId, category.category, token);
       setData(response);
       setLoading(false);
     }
     fetchData();
-  }, [data]);
+  }, []);
 
   return (
     <>
@@ -50,7 +51,7 @@ export default function SingleCategoryPage() {
         ) : (
           <>
             <div className='todolist-container'>
-              <CategoryPage itemData={data}/>
+              <CategoryPage todoItemsForCategory={data} categoryName={categoryName}/>
             </div>
           </>
         )}
