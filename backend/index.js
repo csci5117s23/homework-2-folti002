@@ -2,12 +2,19 @@ import {app} from 'codehooks-js';
 import {crudlify} from 'codehooks-crudlify';
 import { date, object, string, bool } from 'yup';
 
+// Data model for a todo item
 const todoItemYup = object({
   user_id: string().required(),
   content: string().required(),
   complete: bool().default(false),
-  category: string(),
+  category: string().required(),
   created_on: date().default(() => new Date()),
+});
+
+// Data model for a category
+const categoryYup = object({
+  user_id: string().required(),
+  name: string().required(),
 });
 
 // Endpoint and function for updating a todo item.
@@ -20,22 +27,8 @@ async function updateATodoItem(req, res) {
   res.json(data);
 }
 
-// const usersYup = object({
-//   username: string().required(),
-//   _id: string().required(),
-//   display_name: string().required(),
-//   email: string().required(),
-//   created_on: date().default(() => new Date()),
-// });
-
-// Test endpoint
-// app.get("/test", (req, res) => {
-//   res.json({result: "you did it!"});
-// });
-
 // Create REST API for todo items collection
-crudlify(app, {todos: todoItemYup});
-// crudlify(app, {users: usersYup});
+crudlify(app, {todos: todoItemYup, categories: categoryYup});
 
 // bind to serverless runtime
 export default app.init();
