@@ -9,7 +9,9 @@ export default function AddTodoItem({ onAdd, categories }) {
             <input className='input is-primary' name='content' type='text' placeholder='Todo item' />
           </label>
           <hr />
-          { categories.length === 0 ? (
+          { !categories ? (
+            <></>
+          ) : categories.length === 0 ? (
             <h4 className='subtitle'> Create a category before submitting a new GeoDo item! </h4>
           ) : (
             <div >
@@ -17,7 +19,9 @@ export default function AddTodoItem({ onAdd, categories }) {
             </div>
           )}
           <br />
-          { categories.length === 0 ? (
+          { !categories? (
+            <button className='button' type='submit'> Submit </button>
+          ) : categories.length === 0 ? (
             <button className='button' type='submit' disabled> Submit </button>
           ) : (
             <button className='button' type='submit'> Submit </button>

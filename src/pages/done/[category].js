@@ -56,6 +56,7 @@ export default function SingleCategoryPageWithDoneItems() {
               <CategoryPage 
                 todoItemsForCategory={data} 
                 categoryName={categoryName} 
+                categoryId={category.category}
                 isDone={true}
                 setNewTodoItem={setNewTodoItem} />
             </div>
