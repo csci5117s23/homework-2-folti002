@@ -3,25 +3,43 @@ import { faCircle, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import TodoItemLink from './TodoItemLink';
+import { useAuth } from '@clerk/nextjs';
+import { updateOneTodoItem } from '@/modules/data';
 
 export default function TodoItem({ todoItem }) {
-  const [isChecked, setChecked] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const maxStringLength = 50;
-  
-  // If a user clicks on the finished button, 
-  function handleClick() {
-    setChecked(!isChecked);
-  }
-
-  function changeIcon() {
-    setIsHovering(!isHovering);
-  }
+  const { getToken } = useAuth();
 
   // Grab necessary data from todo item prop and set up link
   let content = todoItem.content;
   const id = todoItem._id;
   const itemLink = 'todos/' + id;
+  
+  // If a user clicks on the complete button, the item should
+  // be moved to the done page
+  async function handleClick() {
+    // Create JSON object to update database
+    const newData = {
+      'user_id': todoItem.user_id,
+      'content': content,
+      'complete': !todoItem.complete,
+      // 'category': itemData.category,
+      'created_on': todoItem.created_on,
+      '_id': id
+    }
+
+    // Grab JWT
+    const token = await getToken({ template: 'codehooks' });
+
+    // Update item in the database and update state
+    await updateOneTodoItem(newData, id, token);
+  }
+
+  // Update icon based on hovering status
+  function changeIcon() {
+    setIsHovering(!isHovering);
+  }
 
   // Shorten length of content if too long
   if(content.length > maxStringLength){

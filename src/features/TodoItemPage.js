@@ -33,8 +33,6 @@ export default function TodoItemPage({ itemData }) {
       newComp = true;
     }
 
-    console.log(newComp);
-
     // Create JSON object to update database
     const newData = {
       'user_id': data.user_id,

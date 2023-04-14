@@ -14,7 +14,7 @@ export default function Todos() {
   const [newTodoItem, setNewTodoItem] = useState(false);
   const [todos, setTodos] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { isLoaded, userId, sessionId, getToken } = useAuth();
+  const { isLoaded, userId, getToken } = useAuth();
 
   // Handle authorization - this if statement probably won't happen since
   // entire app is wrapped in Clerk's provider component
@@ -27,7 +27,7 @@ export default function Todos() {
     handleAuth();
   });
 
-  // Fetch todos upon opening the page and every time a new item is added
+  // Fetch todos upon opening the page and every time a new item is added or removed
   useEffect(() => {
     async function fetchData() {
       // Grab JWT from Clerk
@@ -40,7 +40,7 @@ export default function Todos() {
       setNewTodoItem(false);
     }
     fetchData();
-  }, [newTodoItem]);
+  }, [newTodoItem, todos]);
 
   // Add new entry into the database and reload list of todos
   async function handleNewTodoItem(e) {
