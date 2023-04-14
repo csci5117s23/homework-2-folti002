@@ -95,6 +95,7 @@ export default function Todos() {
         handleNewTodoItem={handleNewTodoItem}
         isDone={false}
         categories={categories}
+        setNewTodoItem={setNewTodoItem}
       />
 
       <div className='todolist-container'>

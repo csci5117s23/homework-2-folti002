@@ -6,7 +6,7 @@ import TodoItemLink from './TodoItemLink';
 import { useAuth } from '@clerk/nextjs';
 import { updateOneTodoItem } from '@/modules/data';
 
-export default function TodoItem({ todoItem }) {
+export default function TodoItem({ todoItem, setNewTodoItem }) {
   const [isComplete, setIsComplete] = useState(todoItem.complete || false);
   const maxStringLength = 50;
   const { getToken } = useAuth();
@@ -35,6 +35,7 @@ export default function TodoItem({ todoItem }) {
     // Update item in the database and state
     await updateOneTodoItem(newData, id, token);
     setIsComplete(!isComplete);
+    setNewTodoItem(true);
   }
 
   // Shorten length of content if too long

@@ -1,9 +1,9 @@
 import TodoItem from './TodoItem';
 
-export default function TodoList({ todos }) {
+export default function TodoList({ todos, setNewTodoItem }) {
   const todoList = todos.map((todoItem) =>
     <div className='columns is-mobile column-container'>
-      <TodoItem key={todoItem._id} todoItem={todoItem} />
+      <TodoItem key={todoItem._id} todoItem={todoItem} setNewTodoItem={setNewTodoItem}/>
     </div>
   );
 

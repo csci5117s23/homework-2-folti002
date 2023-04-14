@@ -5,7 +5,7 @@ import TodoList from "./TodoList";
 import HomePageRedirect from "./HomePageRedirect";
 import AddTodoItem from "./AddTodoItem";
 
-export default function GeoDoListLayout({ loading, todos, handleNewTodoItem, isDone, categories }) {
+export default function GeoDoListLayout({ loading, todos, handleNewTodoItem, isDone, categories, setNewTodoItem }) {
   return (
     <>
       <SignedIn>
@@ -34,7 +34,7 @@ export default function GeoDoListLayout({ loading, todos, handleNewTodoItem, isD
                   </div>
 
                   {/* List of todo items */}
-                  <TodoList todos={todos} />
+                  <TodoList todos={todos} setNewTodoItem={setNewTodoItem}/>
                 </>
               ) : (
                 <h1 className='subtitle'> Nothing here yet :&#40; </h1>

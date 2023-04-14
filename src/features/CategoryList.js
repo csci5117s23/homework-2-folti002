@@ -27,6 +27,7 @@ export default function CategoryList({ loading, categories, handleNewCategory })
         <>
           <div className='todo-item-list'> {categoryList} </div>
           <h4 className='subtitle'> Create a new category </h4>
+          
           <AddCategory onAdd={handleNewCategory}/>
         </>
       )}
