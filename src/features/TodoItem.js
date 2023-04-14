@@ -8,6 +8,7 @@ import { updateOneTodoItem } from '@/modules/data';
 
 export default function TodoItem({ todoItem }) {
   const [isHovering, setIsHovering] = useState(false);
+  const [isComplete, setIsComplete] = useState(todoItem.complete || false);
   const maxStringLength = 50;
   const { getToken } = useAuth();
 
@@ -32,7 +33,7 @@ export default function TodoItem({ todoItem }) {
     // Grab JWT
     const token = await getToken({ template: 'codehooks' });
 
-    // Update item in the database and update state
+    // Update item in the database
     await updateOneTodoItem(newData, id, token);
   }
 
@@ -51,7 +52,7 @@ export default function TodoItem({ todoItem }) {
       {/* Icon to handle setting item as complete */}
       <div className='column is-one-quarter todo-item'>
         <Link href='/todos' onClick={handleClick}>
-          { isHovering ? (
+          { isComplete ? (
             <FontAwesomeIcon icon={faCircleCheck} onMouseEnter={changeIcon} style={{color: "#3a527f"}}/>
           ) : (
             <FontAwesomeIcon icon={faCircle} onMouseLeave={changeIcon} style={{color: "#3a527f"}}/>

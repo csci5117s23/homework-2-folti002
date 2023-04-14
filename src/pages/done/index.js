@@ -1,51 +1,34 @@
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import TodoList from '@/features/TodoList';
-import NavBar from '@/features/NavBar';
-import MyHead from '@/features/MyHead';
 import { getAllDoneTodoItems } from '@/modules/data';
+import { useAuth } from '@clerk/nextjs';
+import GeoDoListLayout from '@/features/GeoDoListLayout';
 
 export default function DoneTodos() {
+  // Set state variables and hooks
   const [loading, setLoading] = useState(true);
   const [todos, setTodos] = useState(null);
+  const { userId, getToken } = useAuth();
 
   // Fetch done todos upon opening the page
   useEffect(() => {
     async function fetchData() {
-      // Call data file to send HTTP request and update state
-      const data = await getAllDoneTodoItems();
+      // Grab JWT
+      const token = await getToken({ template: 'codehooks' });
+
+      // Call REST api and update state
+      const data = await getAllDoneTodoItems(userId, token);
       setTodos(data);
       setLoading(false);
     }
     fetchData();
-  }, []);
+  }, [todos]);
 
-  if(loading) {
-    return (
-      <>
-        <MyHead />
-        <NavBar></NavBar>
-        <div className='todolist-container'>
-          <span> Loading... </span>
-        </div>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <MyHead />
-        <NavBar> </NavBar>
-        <div className='todolist-container'>
-          <h1> Complete Todo Items </h1>
-          { todos ? (
-            <TodoList todos={todos}></TodoList>
-          ) : (
-            <h1> No done todo items yet! </h1>
-          )
-          }
-          <Link href='todos'> Back to current todo items! </Link>
-        </div>
-      </>
-    );
-  }
+  return (
+    <GeoDoListLayout 
+      loading={loading} 
+      todos={todos} 
+      handleNewTodoItem={null}
+      isDone={true}
+    />
+  );
 }

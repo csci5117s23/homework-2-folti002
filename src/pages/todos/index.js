@@ -1,12 +1,8 @@
 import { useEffect, useState } from 'react';
-import TodoList from '@/features/TodoList';
-import NavBar from '@/features/NavBar';
-import AddTodoItem from '@/features/AddTodoItem';
-import HomePageRedirect from '@/features/HomePageRedirect';
-import MyHead from '@/features/MyHead';
 import { getAllTodoItems, postNewTodoItem } from '@/modules/data';
-import { SignedIn, SignedOut, useAuth } from '@clerk/nextjs';
+import { useAuth } from '@clerk/nextjs';
 import { useRouter } from 'next/router';
+import GeoDoListLayout from '@/features/GeoDoListLayout';
 
 export default function Todos() {
   // Set state variables and hooks
@@ -62,47 +58,11 @@ export default function Todos() {
   }
   
   return (
-    <>
-      <SignedIn>
-        <MyHead />
-        <NavBar />
-        <div className='todolist-container'>
-          <h1 className='title'> Your GeoDo List: </h1>
-
-          {/* If not loading, list all todos! */}
-          { loading ? (
-            <span> Loading... </span>
-          ) : (
-            <>
-              {/* Display todos */}
-              { todos.length !== 0 ? (
-                <>
-                  {/* Header for group of todos */}
-                  <div className='columns is-mobile'>
-                    <div className='column is-one-quarter small-todo-item'> Complete? </div>
-                    <div className='column is-one-half small-todo-item'> Content </div>
-                    <div className='column is-one-quarter small-todo-item'> Edit </div>
-                  </div>
-
-                  {/* List of todo items */}
-                  <TodoList todos={todos} />
-                </>
-              ) : (
-                <h1 className='subtitle'> No todo items yet! </h1>
-              )
-              }
-
-              {/* Text input for new todo item */}
-              <AddTodoItem onAdd={handleNewTodoItem} />
-            </>
-            )
-          }
-        </div>
-      </SignedIn>
-
-      <SignedOut>
-        <HomePageRedirect />
-      </SignedOut>
-    </>
+    <GeoDoListLayout 
+      loading={loading} 
+      todos={todos} 
+      handleNewTodoItem={handleNewTodoItem}
+      isDone={false}
+    />
   );
 }
