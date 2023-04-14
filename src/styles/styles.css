@@ -60,3 +60,14 @@ h3 {
 .todo-item-list {
   margin: 1.5rem;
 }
+
+.todo-item-form {
+  display: grid;
+  text-align: center;
+  margin: 1.5rem;
+  padding: 1rem;
+}
+
+.span-spacing {
+  margin: 0.5rem;
+}

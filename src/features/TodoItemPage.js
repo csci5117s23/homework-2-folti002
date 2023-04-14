@@ -15,7 +15,8 @@ export default function TodoItemPage({ itemData }) {
   // State and router  
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
-  const [curContent, setCurContent] = useState(data.content);
+  const [curContent, setCurContent] = useState(data.content || '');
+  const [curComplete, setCurComplete] = useState(data.complete || false);
   const { getToken } = useAuth();
 
   // Update todo item's content based on user's edits
@@ -24,15 +25,24 @@ export default function TodoItemPage({ itemData }) {
     const form = e.target;
     const formData = new FormData(form);
     const formJson = Object.fromEntries(formData.entries());
+    let newComp = false;
+
+    // Set whether or not the current formJson has a complete property
+    // Update the current complete state accordingly
+    if(formJson.newComplete){
+      newComp = true;
+    }
+
+    console.log(newComp);
 
     // Create JSON object to update database
     const newData = {
-      "user_id": data.user_id,
-      "content": formJson.editedContent,
-      "complete": data.complete,
-      // "category": itemData.category,
-      "created_on": data.created_on,
-      "_id": data._id
+      'user_id': data.user_id,
+      'content': formJson.editedContent,
+      'complete': newComp,
+      // 'category': itemData.category,
+      'created_on': data.created_on,
+      '_id': data._id
     };
 
     // Grab JWT
@@ -42,6 +52,7 @@ export default function TodoItemPage({ itemData }) {
     await updateOneTodoItem(newData, data._id, token);
     setIsEditing(!isEditing);
     setCurContent(formJson.editedContent);
+    setCurComplete(newComp);
   }
 
   // Allow ediitng
@@ -57,10 +68,16 @@ export default function TodoItemPage({ itemData }) {
         <>
           <form method='post' onSubmit={handleEdit}>
             <div className='textarea-container'>
-              <textarea className='textarea' name='editedContent' defaultValue={curContent} rows='10' />
+              <textarea className='textarea' name='editedContent' defaultValue={curContent || ''} rows='10' />
             </div>
-            <button className='button' onClick={allowEdits}> Cancel edits </button>
-            <button className='button' type='submit'> Submit edits </button> 
+            <div className='todo-item-form'>
+              <label className='checkbox' >
+                <input type='checkbox' name='newComplete' defaultChecked={curComplete}/>
+                <span className='span-spacing'>Is this item complete?</span>
+              </label>
+              <button className='button' onClick={allowEdits}> Cancel edits </button>
+              <button className='button' type='submit'> Submit edits </button> 
+            </div>
           </form>
         </>
       ) : (
