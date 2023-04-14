@@ -7,7 +7,6 @@ import { useAuth } from '@clerk/nextjs';
 import { updateOneTodoItem } from '@/modules/data';
 
 export default function TodoItem({ todoItem }) {
-  const [isHovering, setIsHovering] = useState(false);
   const [isComplete, setIsComplete] = useState(todoItem.complete || false);
   const maxStringLength = 50;
   const { getToken } = useAuth();
@@ -53,9 +52,9 @@ export default function TodoItem({ todoItem }) {
       <div className='column is-one-quarter todo-item'>
         <Link href='/todos' onClick={handleClick}>
           { isComplete ? (
-            <FontAwesomeIcon icon={faCircleCheck} onMouseEnter={changeIcon} style={{color: "#3a527f"}}/>
+            <FontAwesomeIcon icon={faCircleCheck} style={{color: "#3a527f"}}/>
           ) : (
-            <FontAwesomeIcon icon={faCircle} onMouseLeave={changeIcon} style={{color: "#3a527f"}}/>
+            <FontAwesomeIcon icon={faCircle} style={{color: "#3a527f"}}/>
           )}
         </Link>
       </div>

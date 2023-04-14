@@ -7,7 +7,7 @@ export default function error() {
       <MyHead />
       <NavBar />
       <div className='todolist-container'>
-        <h1 className='title'> Page not found! </h1>
+        <h1 className='title'> 404 Page not found! </h1>
         <h3 className='subtitle'> Navigate to a valid page above </h3>
       </div>
     </>
