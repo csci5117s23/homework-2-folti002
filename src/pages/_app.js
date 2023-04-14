@@ -5,6 +5,8 @@ import '../styles/styles.css';
 
 const publicPages = ["/"];
 
+// Renders the app wrapped in a ClerkProvider to force
+// sign-in when certain pages are reached
 export default function App({ Component, pageProps }) {
   // Get path name
   const { pathname } = useRouter();
@@ -12,7 +14,7 @@ export default function App({ Component, pageProps }) {
   // Check if current route is a public page
   const isPublicPage = publicPages.includes(pathname);
 
-  // If route is public, render, if not, redirect to sign in
+  // If route is public, render, if not and user not signed in, redirect to sign in
   return (
     <ClerkProvider {...pageProps}>
       {isPublicPage ? (

@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import GeoDoListLayout from '@/features/GeoDoListLayout';
 import CategoryList from '@/features/CategoryList';
 
+// Displays all todos and categories - updates when new data is sent
 export default function Todos() {
   // Set state variables and hooks
   const router = useRouter();

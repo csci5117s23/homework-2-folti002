@@ -1,6 +1,7 @@
 import MyHead from '@/features/MyHead';
 import NavBar from '@/features/NavBar';
 
+// 404 error page
 export default function error() {
   return (
     <>

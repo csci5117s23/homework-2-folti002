@@ -1,5 +1,6 @@
 import CategorySelections from "./CategorySelections";
 
+// Form submission for adding a new todo item to the database
 export default function AddTodoItem({ onAdd, categories }) {
   return (
     <>

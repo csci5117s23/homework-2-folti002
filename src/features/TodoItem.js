@@ -6,9 +6,10 @@ import TodoItemLink from './TodoItemLink';
 import { useAuth } from '@clerk/nextjs';
 import { updateOneTodoItem } from '@/modules/data';
 
+// Creates a container for a todo item
 export default function TodoItem({ todoItem, setNewTodoItem }) {
   const [isComplete, setIsComplete] = useState(todoItem.complete || false);
-  const maxStringLength = 50;
+  const maxStringLength = 35;
   const { getToken } = useAuth();
 
   // Grab necessary data from todo item prop and set up link
@@ -24,7 +25,7 @@ export default function TodoItem({ todoItem, setNewTodoItem }) {
       'user_id': todoItem.user_id,
       'content': content,
       'complete': !todoItem.complete,
-      // 'category': itemData.category,
+      'category': todoItem.category,
       'created_on': todoItem.created_on,
       '_id': id
     }

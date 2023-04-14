@@ -1,8 +1,9 @@
 import { useAuth } from '@clerk/nextjs';
 import CategoryLink from './CategoryLink';
 
+// Creates a container for a category
 export default function Category({ categoryData, isDone }) {
-  const maxStringLength = 50;
+  const maxStringLength = 35;
   const { getToken } = useAuth();
 
   // Set up link to category page for this category and grab name

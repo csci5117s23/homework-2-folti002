@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { getAllCategories, getOneCategory, getTodoItemById } from '@/modules/data';
 import { useAuth } from '@clerk/nextjs';
 
+// Dynamic link for an unfinished todo item, renders a TodoItemPage
 export default function TodoItemContent() {
   const router = useRouter();
   const { id } = router.query;
@@ -41,19 +42,25 @@ export default function TodoItemContent() {
 
   return (
     <>
-      <MyHead />
-      <NavBar />
-      { loading ? (
-        <div className='todolist-container'>
-          <span> Loading... </span>
-        </div>
-      ) : (
-        <>
+      <SignedIn>
+        <MyHead />
+        <NavBar />
+        { loading ? (
           <div className='todolist-container'>
-            <TodoItemPage itemData={data} categories={categories} categoryName={categoryName} setCategoryName={setCategoryName}/>
+            <span> Loading... </span>
           </div>
-        </>
-      )}
+        ) : (
+          <>
+            <div className='todolist-container'>
+              <TodoItemPage itemData={data} categories={categories} categoryName={categoryName} setCategoryName={setCategoryName}/>
+            </div>
+          </>
+        )}
+      </SignedIn>
+
+      <SignedOut>
+        <HomePageRedirect />
+      </SignedOut>
     </>
   );
 }

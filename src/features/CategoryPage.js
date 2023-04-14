@@ -4,6 +4,7 @@ import TodoList from "./TodoList";
 import { useAuth } from "@clerk/nextjs";
 import { postNewTodoItem } from "@/modules/data";
 
+// Dynamically routed page displaying a category and the todos that fall underneath it
 export default function CategoryPage({ todoItemsForCategory, categoryName, categoryId, isDone, setNewTodoItem }) {
   const router = useRouter();
   const { userId, getToken } = useAuth();

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useAuth } from '@clerk/nextjs';
 import CategorySelections from './CategorySelections';
 
+// Returns the dynamic page for a todo item, allowing a user to edit that item
 export default function TodoItemPage({ itemData, categories, categoryName, setCategoryName }) {
   const router = useRouter();
   // If there is no data, go to error page 

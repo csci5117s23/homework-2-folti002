@@ -5,6 +5,7 @@ import TodoList from "./TodoList";
 import HomePageRedirect from "./HomePageRedirect";
 import AddTodoItem from "./AddTodoItem";
 
+// The main layout of the GeoDo todos page
 export default function GeoDoListLayout({ loading, todos, handleNewTodoItem, isDone, categories, setNewTodoItem }) {
   return (
     <>

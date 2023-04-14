@@ -7,6 +7,7 @@ import { SignedIn, SignedOut, useAuth } from "@clerk/nextjs";
 import HomePageRedirect from "@/features/HomePageRedirect";
 import { useState, useEffect } from "react";
 
+// Dynamic page for a category, renders a CategoryPage
 export default function SingleCategoryPageWithDoneItems() {
   const router = useRouter();
   const category = router.query;

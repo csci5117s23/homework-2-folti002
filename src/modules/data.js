@@ -1,7 +1,6 @@
 // Contains all REST api calls 
 
 const BASE_URL = 'https://backend-rnkp.api.codehooks.io/dev';
-// const API_KEY= '10772928-f01a-46be-b1b6-a67f7d64d93b';
 
 // Get all todo items for a user
 export async function getAllTodoItems(userId, authToken){

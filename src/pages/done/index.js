@@ -6,6 +6,8 @@ import CategoryList from '@/features/CategoryList';
 import { getAllCategories } from '@/modules/data';
 import { postNewCategory } from '@/modules/data';
 
+// Grabs data for all done todos and displays them
+// along with all categories
 export default function DoneTodos() {
   // Set state variables and hooks
   const [loading, setLoading] = useState(true);

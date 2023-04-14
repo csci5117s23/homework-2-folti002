@@ -1,3 +1,4 @@
+// Returns a form allowing a user to input a new category
 export default function AddCategory({ onAdd }) {
   return (
     <>

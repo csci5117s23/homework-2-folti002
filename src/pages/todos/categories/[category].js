@@ -7,6 +7,7 @@ import { SignedIn, SignedOut, useAuth } from "@clerk/nextjs";
 import HomePageRedirect from "@/features/HomePageRedirect";
 import { useState, useEffect } from "react";
 
+// Dynamic link for todo items in a certain category
 export default function SingleCategoryPage() {
   const router = useRouter();
   const category = router.query;
