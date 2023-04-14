@@ -112,3 +112,16 @@ export async function getDoneItemsForCategory(userId, categoryId, authToken){
   const data = await response.json();
   return data;
 }
+
+// Post new category
+export async function postNewCategory(data, authToken){
+  const response = fetch(`${BASE_URL}/categories`, {
+    'method': 'POST',
+    'headers': {
+      'Authorization': 'Bearer ' + authToken,
+      'Content-Type': 'application/json',
+    },
+    'body': JSON.stringify(data)
+  });
+  return;
+}

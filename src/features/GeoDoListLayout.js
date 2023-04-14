@@ -5,7 +5,7 @@ import TodoList from "./TodoList";
 import HomePageRedirect from "./HomePageRedirect";
 import AddTodoItem from "./AddTodoItem";
 
-export default function GeoDoListLayout({ loading, todos, handleNewTodoItem, isDone }) {
+export default function GeoDoListLayout({ loading, todos, handleNewTodoItem, isDone, categories }) {
   return (
     <>
       <SignedIn>
@@ -43,7 +43,10 @@ export default function GeoDoListLayout({ loading, todos, handleNewTodoItem, isD
 
               {/* Text input for new todo item */}
               { !isDone && (
-                <AddTodoItem onAdd={handleNewTodoItem} />
+                <>
+                  <h4 className="subtitle"> Submit a new todo item </h4>
+                  <AddTodoItem onAdd={handleNewTodoItem} categories={categories}/>
+                </>
               )}
             </>
             )

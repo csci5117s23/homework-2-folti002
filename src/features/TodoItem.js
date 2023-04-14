@@ -14,7 +14,7 @@ export default function TodoItem({ todoItem }) {
   // Grab necessary data from todo item prop and set up link
   let content = todoItem.content;
   const id = todoItem._id;
-  const itemLink = 'todos/' + id;
+  const itemLink = '/todos/' + id;
   
   // If a user clicks on the complete button, the item should
   // be moved to the done page
@@ -32,13 +32,9 @@ export default function TodoItem({ todoItem }) {
     // Grab JWT
     const token = await getToken({ template: 'codehooks' });
 
-    // Update item in the database
+    // Update item in the database and state
     await updateOneTodoItem(newData, id, token);
-  }
-
-  // Update icon based on hovering status
-  function changeIcon() {
-    setIsHovering(!isHovering);
+    setIsComplete(!isComplete);
   }
 
   // Shorten length of content if too long
@@ -68,7 +64,7 @@ export default function TodoItem({ todoItem }) {
 
       {/* Edit todo item button */}
       <div className='column is-one-quarter todo-item'>
-        <TodoItemLink href={itemLink} todoItem={todoItem}></TodoItemLink>
+        <TodoItemLink href={itemLink} />
       </div>
     </>
   );

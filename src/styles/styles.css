@@ -31,6 +31,10 @@ h3 {
   padding: 1.5rem;
 }
 
+h4 {
+  padding-top: 1.5rem;
+}
+
 .todolist-container {
   text-align: center;
   padding: 2rem;
