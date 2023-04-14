@@ -80,3 +80,12 @@ h4 {
 .span-spacing {
   margin: 0.5rem;
 }
+
+.narrow-select {
+  margin: 0rem 10rem 0rem;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.19);
+}
+
+.narrow-button {
+  margin: 0rem 10rem 0rem;
+}

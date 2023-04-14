@@ -2,8 +2,9 @@ import { updateOneTodoItem } from '@/modules/data';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useAuth } from '@clerk/nextjs';
+import CategorySelections from './CategorySelections';
 
-export default function TodoItemPage({ itemData }) {
+export default function TodoItemPage({ itemData, categories, categoryName, setCategoryName }) {
   const router = useRouter();
   // If there is no data, go to error page 
   if(itemData.length === 0) {
@@ -39,7 +40,7 @@ export default function TodoItemPage({ itemData }) {
       'user_id': data.user_id,
       'content': formJson.editedContent,
       'complete': newComp,
-      // 'category': itemData.category,
+      'category': formJson.category,
       'created_on': data.created_on,
       '_id': data._id
     };
@@ -52,6 +53,7 @@ export default function TodoItemPage({ itemData }) {
     setIsEditing(!isEditing);
     setCurContent(formJson.editedContent);
     setCurComplete(newComp);
+    setCategoryName(formJson.category);
   }
 
   // Allow ediitng
@@ -67,22 +69,30 @@ export default function TodoItemPage({ itemData }) {
         <>
           <form method='post' onSubmit={handleEdit}>
             <div className='textarea-container'>
-              <textarea className='textarea' name='editedContent' defaultValue={curContent || ''} rows='10' />
+              <textarea className='textarea' name='editedContent' defaultValue={curContent || ''} rows='4' />
             </div>
             <div className='todo-item-form'>
               <label className='checkbox' >
                 <input type='checkbox' name='newComplete' defaultChecked={curComplete}/>
                 <span className='span-spacing'>Is this item complete?</span>
               </label>
-              <button className='button' onClick={allowEdits}> Cancel edits </button>
-              <button className='button' type='submit'> Submit edits </button> 
+              <br />
+              { categories && (
+                <>
+                  <h4 className='subtitle'> Current category is {categoryName} </h4>
+                  <CategorySelections categories={categories}/>
+                </>
+              )}
+              <br />
+              <button className='button narrow-button' onClick={allowEdits}> Cancel edits </button>
+              <button className='button narrow-button' type='submit'> Submit edits </button> 
             </div>
           </form>
         </>
       ) : (
         <>
           <div className='textarea-container'>
-            <textarea className='textarea' defaultValue={curContent} rows='10' disabled />
+            <textarea className='textarea' defaultValue={curContent} rows='4' disabled />
           </div>
           <button className='button' onClick={allowEdits}> Edit todo item </button> 
         </>

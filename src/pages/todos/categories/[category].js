@@ -28,7 +28,6 @@ export default function SingleCategoryPage() {
         router.push('/404');
         return null;
       }
-      console.log(categoryData);
       setCategoryName(categoryData[0].name);
 
       // Call REST api and update state

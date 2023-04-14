@@ -6,5 +6,5 @@ export default function CategorySelections({ categories }) {
     <option key={category._id} value={category._id}> {category.name} </option>
   );
 
-  return <select name='category'> { categorySelections } </select>;
+  return <select name='category' className='select narrow-select'> { categorySelections } </select>;
 }
