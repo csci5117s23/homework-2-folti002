@@ -30,10 +30,6 @@ export default function NavBar() {
             <Link href='/done' id='bright-hover' className='navbar-item'>
               Completed Todos
             </Link>
-
-            <Link href='/' id='bright-hover' className='navbar-item'>
-              Categories
-            </Link>
           </div>
 
           {/* Sign-in button or user button if signed in */}
