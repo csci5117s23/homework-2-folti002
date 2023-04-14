@@ -4,16 +4,17 @@ import { useState } from 'react';
 import { useAuth } from '@clerk/nextjs';
 
 export default function TodoItemPage({ itemData }) {
+  const router = useRouter();
   // If there is no data, go to error page 
   if(itemData.length === 0) {
     router.push('/404');
+    return null;
   }
 
   // Only one todo item, so grab that data from the array passed in
   const data = itemData[0];
 
-  // State and router  
-  const router = useRouter();
+  // State and router
   const [isEditing, setIsEditing] = useState(false);
   const [curContent, setCurContent] = useState(data.content || '');
   const [curComplete, setCurComplete] = useState(data.complete || false);
