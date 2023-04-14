@@ -4,11 +4,8 @@ export default function AddCategory({ onAdd }) {
       <div className='form-container'>
         <form method='post' onSubmit={onAdd}>
           <label>
-            <input className='input is-primary' name='content' type='text' placeholder='Todo item' />
+            <input className='input is-primary' name='name' type='text' placeholder='Category name' />
           </label>
-          <div className='select'>
-            <CategorySelections categories={categories} />
-          </div>
           <br />
           <button className='button' type='submit'> Submit </button>
         </form>

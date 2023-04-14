@@ -35,7 +35,6 @@ export default function Todos() {
 
       // Call REST api and update state
       const todoItems = await getAllTodoItems(userId, token);
-      // console.log(todoItems);
       setTodos(todoItems);
       setNewTodoItem(false);
 
@@ -55,7 +54,6 @@ export default function Todos() {
     const form = e.target;
     const formData = new FormData(form);
     const formJson = Object.fromEntries(formData.entries());
-    console.log(formJson);
 
     // Grab JWT from Clerk
     const token = await getToken({ template: 'codehooks' });
