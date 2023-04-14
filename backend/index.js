@@ -10,6 +10,16 @@ const todoItemYup = object({
   created_on: date().default(() => new Date()),
 });
 
+// Endpoint and function for updating a todo item.
+// This can happen either if the user updates the content, or if they 
+// mark a todo item as complete.
+app.put('/updateTodoItem', updateATodoItem)
+async function updateATodoItem(req, res) {
+  const db = await Datastore.open();
+  const data = await db.updateOne('todos', req.query._id, req.body);
+  res.json(data);
+}
+
 // const usersYup = object({
 //   username: string().required(),
 //   _id: string().required(),

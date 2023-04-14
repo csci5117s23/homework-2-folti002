@@ -75,7 +75,7 @@ export default function Todos() {
           ) : (
             <>
               {/* Display todos */}
-              { todos ? (
+              { todos.length !== 0 ? (
                 <>
                   {/* Header for group of todos */}
                   <div className='columns is-mobile'>

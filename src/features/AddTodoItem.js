@@ -1,7 +1,7 @@
 export default function AddTodoItem({ onAdd }) {
   return (
     <>
-      <div>
+      <div className='todolist-container'>
         <form method='post' onSubmit={onAdd}>
           <label>
             <input className='input is-primary' name='content' type='text' placeholder='Text input' />

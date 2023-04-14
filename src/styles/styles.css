@@ -48,6 +48,13 @@ h3 {
   background-color: #f59b64;
   border-radius: 5px;
   margin: 1.5rem;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.textarea-container {
+  border-radius: 5px;
+  margin: 1.5rem;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 .todo-item-list {

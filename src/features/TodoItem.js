@@ -48,7 +48,7 @@ export default function TodoItem({ todoItem }) {
 
       {/* Edit todo item button */}
       <div className='column is-one-quarter todo-item'>
-        <TodoItemLink href={itemLink}></TodoItemLink>
+        <TodoItemLink href={itemLink} todoItem={todoItem}></TodoItemLink>
       </div>
     </>
   );

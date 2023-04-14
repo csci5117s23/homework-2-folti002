@@ -23,11 +23,11 @@ export default function NavBar() {
         {/* Navigation Buttons */}
         <div id='geoDoNavBar' className='navbar-item'>
           <div className='navbar-item'>
-            <Link href='todos' id='bright-hover' className='navbar-item'>
+            <Link href='/todos' id='bright-hover' className='navbar-item'>
               Todos
             </Link>
 
-            <Link href='done' id='bright-hover' className='navbar-item'>
+            <Link href='/done' id='bright-hover' className='navbar-item'>
               Complete todos
             </Link>
 

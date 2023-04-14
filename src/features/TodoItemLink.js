@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-export default function TodoItemLink({ href }) {
+export default function TodoItemLink({ href, todoItem }) {
   const router = useRouter();
 
   const handleClick = (e) => {

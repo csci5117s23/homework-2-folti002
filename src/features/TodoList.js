@@ -1,8 +1,6 @@
 import TodoItem from './TodoItem';
 
 export default function TodoList({ todos }) {
-  console.log(todos);
-
   const todoList = todos.map((todoItem) =>
     <div className='columns is-mobile column-container'>
       <TodoItem key={todoItem._id} todoItem={todoItem} ></TodoItem>

@@ -23,9 +23,18 @@ export async function getAllDoneTodoItems(userId, authToken){
   return data;
 }
 
+// Get a todo item by id
+export async function getTodoItemById(itemId, authToken){
+  const response = await fetch(`${BASE_URL}/todos?_id=${itemId}`, {
+    'method': 'GET',
+    'headers': {'Authorization': 'Bearer ' + authToken}
+  });
+  const data = await response.json();
+  return data;
+}
+
 // Post a new todo item for a user
-export async function postNewTodoItem(data, userId, authToken){
-  console.log(data);
+export async function postNewTodoItem(data, authToken){
   const response = fetch(`${BASE_URL}/todos`, {
     'method': 'POST',
     'headers': {
@@ -38,8 +47,8 @@ export async function postNewTodoItem(data, userId, authToken){
 }
 
 // Update a todo item for a user
-export async function updateOneTodoItem(data, authToken){
-  const response = fetch(`${BASE_URL}/todos`, {
+export async function updateOneTodoItem(data, itemId, authToken){
+  const response = fetch(`${BASE_URL}/updateTodoItem?_id=${itemId}`, {
     'method': 'PUT',
     'headers': {
       'Authorization': 'Bearer ' + authToken,
