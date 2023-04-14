@@ -47,4 +47,9 @@ h3 {
 .column-container {
   background-color: #f59b64;
   border-radius: 5px;
+  margin: 1.5rem;
+}
+
+.todo-item-list {
+  margin: 1.5rem;
 }

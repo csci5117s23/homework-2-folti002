@@ -83,6 +83,8 @@ export default function Todos() {
                     <div className='column is-one-half small-todo-item'> Content </div>
                     <div className='column is-one-quarter small-todo-item'> Edit </div>
                   </div>
+
+                  {/* List of todo items */}
                   <TodoList todos={todos} />
                 </>
               ) : (
