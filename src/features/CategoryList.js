@@ -1,7 +1,7 @@
 import Category from "./Category";
 
 export default function CategoryList({ loading, categories, handleNewCategory }) {
-  if(!categories){
+  if(categories === null){
     return <div> No categories yet! </div>;
   }
   const categoryList = categories.map((category) =>

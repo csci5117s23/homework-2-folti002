@@ -1,6 +1,4 @@
-import CategorySelections from "./CategorySelections";
-
-export default function AddTodoItem({ onAdd, categories }) {
+export default function AddCategory({ onAdd }) {
   return (
     <>
       <div className='form-container'>
