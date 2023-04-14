@@ -64,6 +64,7 @@ export default function TodoItemPage({ itemData, categories, categoryName, setCa
   return (
     <>
       <h1 className='title'> Your todo item: </h1>
+      <h4 className='subtitle'> Category: {categoryName} </h4>
       <div>
       { isEditing ? (
         <>

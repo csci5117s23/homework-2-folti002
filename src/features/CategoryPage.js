@@ -1,6 +1,6 @@
 import TodoList from "./TodoList";
 
-export default function CategoryPage({ todoItemsForCategory, categoryName, isDone }) {
+export default function CategoryPage({ todoItemsForCategory, categoryName, isDone, setNewTodoItem }) {
   // If there is no data, go to error page
   if(!todoItemsForCategory) {
     return null;
@@ -9,11 +9,10 @@ export default function CategoryPage({ todoItemsForCategory, categoryName, isDon
       <>
         <h1 className='title'> {categoryName} </h1>
         { isDone? (
-          <h4 className='subtitle'> Done GeoDo Items </h4>
+          <h4 className='subtitle'> No done GeoDo items in this category yet! </h4>
         ) : (
-          <h4 className='subtitle'> Incomplete GeoDo Items </h4>
+          <h4 className='subtitle'> No incomplete GeoDo items in this category yet! </h4>
         )}
-        <p> No GeoDo items in this category yet! </p>
       </>
     );
   }
@@ -37,7 +36,7 @@ export default function CategoryPage({ todoItemsForCategory, categoryName, isDon
           </div>
 
           {/* List of todo items */}
-          <TodoList todos={todoItemsForCategory} />
+          <TodoList todos={todoItemsForCategory} setNewTodoItem={setNewTodoItem}/>
         </>
       ) : (
         <h1 className='subtitle'> Nothing here yet :&#40; </h1>

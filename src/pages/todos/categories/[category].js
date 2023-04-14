@@ -15,6 +15,8 @@ export default function SingleCategoryPage() {
   const [categoryName, setCategoryName] = useState('');
   const { userId, getToken } = useAuth();
 
+  const [newTodoItem, setNewTodoItem] = useState(false);
+
   // Grab all todo items pertaining to this category
   useEffect(() => {
     async function fetchData() {
@@ -34,6 +36,7 @@ export default function SingleCategoryPage() {
       const response = await getTodoItemsForCategory(userId, category.category, token);
       setData(response);
       setLoading(false);
+      setNewTodoItem(false);
     }
     fetchData();
   }, []);
@@ -50,7 +53,11 @@ export default function SingleCategoryPage() {
         ) : (
           <>
             <div className='todolist-container'>
-              <CategoryPage todoItemsForCategory={data} categoryName={categoryName} isDone={false} />
+              <CategoryPage 
+                todoItemsForCategory={data}  
+                categoryName={categoryName} 
+                isDone={false}
+                setNewTodoItem={setNewTodoItem} />
             </div>
           </>
         )}

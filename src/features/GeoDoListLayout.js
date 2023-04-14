@@ -44,7 +44,7 @@ export default function GeoDoListLayout({ loading, todos, handleNewTodoItem, isD
               {/* Text input for new todo item */}
               { !isDone && (
                 <>
-                  <h4 className="subtitle"> Submit a new todo item </h4>
+                  <h4 className="subtitle"> Submit a new todo item (choose category below) </h4>
                   <AddTodoItem onAdd={handleNewTodoItem} categories={categories}/>
                 </>
               )}

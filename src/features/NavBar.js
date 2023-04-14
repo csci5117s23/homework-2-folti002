@@ -35,9 +35,9 @@ export default function NavBar() {
           {/* Sign-in button or user button if signed in */}
           <div className='navbar-end'>
             <div className='navbar-item'>
-              <SignedOut>
+              {/* <SignedOut>
                 <MySignInButton />
-              </SignedOut>
+              </SignedOut> */}
               <SignedIn>
                 <div>
                   <UserButton />
