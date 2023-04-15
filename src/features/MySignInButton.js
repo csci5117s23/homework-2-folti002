@@ -1,4 +1,4 @@
-import { SignInButton } from '@clerk/nextjs';
+import { SignInButton, SignUpButton } from '@clerk/nextjs';
 
 // Simple Clerk-powered sign in button
 export default function MySignInButton() {
@@ -6,9 +6,14 @@ export default function MySignInButton() {
     <div>
       <SignInButton mode='modal'>
         <button className='button'>
-          Sign In/Create Account
+          Sign In 
         </button>
       </SignInButton>
+      <SignUpButton mode='modal'>
+        <button className='button'>
+          Create Account
+        </button>
+      </SignUpButton>
     </div>
   );
 }

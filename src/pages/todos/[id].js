@@ -4,7 +4,8 @@ import { useRouter } from 'next/router'
 import TodoItemPage from '@/features/TodoItemPage';
 import { useEffect, useState } from 'react';
 import { getAllCategories, getOneCategory, getTodoItemById } from '@/modules/data';
-import { useAuth } from '@clerk/nextjs';
+import { useAuth, SignedIn, SignedOut } from '@clerk/nextjs';
+import HomePageRedirect from '@/features/HomePageRedirect';
 
 // Dynamic link for an unfinished todo item, renders a TodoItemPage
 export default function TodoItemContent() {
