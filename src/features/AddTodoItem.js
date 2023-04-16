@@ -7,7 +7,7 @@ export default function AddTodoItem({ onAdd, categories }) {
       <div className='form-container'>
         <form method='post' onSubmit={onAdd}>
           <label>
-            <input className='input is-primary' name='content' type='text' placeholder='Todo item' />
+            <input className='input is-primary' name='content' type='text' placeholder='Todo item' required />
           </label>
           <hr />
           { !categories ? (

@@ -4,9 +4,17 @@ import NavBar from "./NavBar";
 import TodoList from "./TodoList";
 import HomePageRedirect from "./HomePageRedirect";
 import AddTodoItem from "./AddTodoItem";
+import AppDescription from "./AppDescription";
+import { useState } from "react";
 
 // The main layout of the GeoDo todos page
 export default function GeoDoListLayout({ loading, todos, handleNewTodoItem, isDone, categories, setNewTodoItem }) {
+  const [showHelp, setShowHelp] = useState(false);
+
+  function handleClick() {
+    setShowHelp(!showHelp);
+  }
+
   return (
     <>
       <SignedIn>
@@ -16,7 +24,17 @@ export default function GeoDoListLayout({ loading, todos, handleNewTodoItem, isD
           { isDone ? (
             <h1 className='title'> Your completed todos! </h1>
           ) : (
-            <h1 className='title'> Your GeoDo List: </h1>
+            <>
+              { showHelp ? (
+                <>
+                  <AppDescription />
+                  <button className="button" onClick={handleClick}> Hide </button>
+                </>
+              ) : (
+                <button className="button" onClick={handleClick}> Show help </button>
+              )}
+              <h1 className='title'> Your GeoDo List: </h1>
+            </>
           )}
 
           {/* If not loading, list all todos! */}
