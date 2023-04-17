@@ -27,6 +27,14 @@ async function updateATodoItem(req, res) {
   res.json(data);
 }
 
+// Endpoint for deleting a category
+app.delete('/deleteCategory', deleteACategory)
+async function deleteACategory(req, res) {
+  const db = await Datastore.open();
+  const data = await db.removeOne('categories', req.query._id);
+  res.json(data);
+}
+
 // Create REST API for todo items collection
 crudlify(app, {todos: todoItemYup, categories: categoryYup});
 

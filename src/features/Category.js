@@ -1,8 +1,9 @@
 import { useAuth } from '@clerk/nextjs';
 import CategoryLink from './CategoryLink';
+import { deleteSingleCategory } from '@/modules/data';
 
 // Creates a container for a category
-export default function Category({ categoryData, isDone }) {
+export default function Category({ categoryData, isDone, setLoading }) {
   const maxStringLength = 35;
   const { getToken } = useAuth();
 
@@ -21,10 +22,20 @@ export default function Category({ categoryData, isDone }) {
     categoryName = categoryName.substring(0, maxStringLength) + '...';
   }  
 
+  // Delete a category
+  async function handleDeleteCategory() {
+    setLoading(true);
+    const token = await getToken({ template: 'codehooks' });
+    await deleteSingleCategory(id, token);
+    setLoading(false);
+  }
+
   return (
     <>
       <div className='todo-item'>
         <CategoryLink href={categoryLink} name={categoryData.name} />
+        <button className='button' onClick={handleDeleteCategory}> Delete this category </button>
+        <div className='bottom-button-space' />
       </div>
     </>
   );

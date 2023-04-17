@@ -2,7 +2,7 @@ import AddCategory from "./AddCategory";
 import Category from "./Category";
 
 // Creates a list of Category components and places them in columns
-export default function CategoryList({ loading, categories, handleNewCategory, isDone }) {
+export default function CategoryList({ loading, categories, handleNewCategory, isDone, setLoading }) {
   // If there are no categories, let users create a new one
   if(categories === null){
     return (
@@ -19,7 +19,7 @@ export default function CategoryList({ loading, categories, handleNewCategory, i
   // Create Category components and put them in their own columns
   const categoryList = categories.map((category) =>
     <div className='column-container'>
-      <Category key={category._id} categoryData={category} isDone={isDone}/>
+      <Category key={category._id} categoryData={category} isDone={isDone} setLoading={setLoading}/>
     </div>
   );
 

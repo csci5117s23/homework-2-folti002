@@ -89,3 +89,7 @@ h4 {
 .narrow-button {
   margin: 0rem 10rem 0rem;
 }
+
+.bottom-button-space {
+  padding-bottom: 1.5rem;
+}

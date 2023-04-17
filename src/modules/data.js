@@ -123,5 +123,14 @@ export async function postNewCategory(data, authToken){
     },
     'body': JSON.stringify(data)
   });
-  return;
+  return await response;
+}
+
+// Delete a category
+export async function deleteSingleCategory(categoryId, authToken){
+  const response = fetch(`${BASE_URL}/deleteCategory?_id=${categoryId}`, {
+    'method': 'DELETE',
+    'headers': {'Authorization': 'Bearer ' + authToken}
+  });
+  return await response;
 }

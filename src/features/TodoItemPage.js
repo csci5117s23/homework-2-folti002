@@ -51,10 +51,10 @@ export default function TodoItemPage({ itemData, categories, categoryName, setCa
 
     // Update item in the database and update state
     await updateOneTodoItem(newData, data._id, token);
-    setIsEditing(!isEditing);
     setCurContent(formJson.editedContent);
     setCurComplete(newComp);
     setCategoryName(formJson.category);
+    setIsEditing(!isEditing);
   }
 
   // Allow ediitng
@@ -65,7 +65,11 @@ export default function TodoItemPage({ itemData, categories, categoryName, setCa
   return (
     <>
       <h1 className='title'> Your todo item: </h1>
-      <h4 className='subtitle'> Category: {categoryName} </h4>
+      { categoryName ? (
+        <h4 className='subtitle'> Category: {categoryName} </h4>
+      ) : (
+        <h4 className='subtitle'> Not currently assigned to a category </h4>
+      )}
       <div>
       { isEditing ? (
         <>
@@ -81,7 +85,11 @@ export default function TodoItemPage({ itemData, categories, categoryName, setCa
               <br />
               { categories && (
                 <>
-                  <h4 className='subtitle'> Current category is {categoryName} </h4>
+                  { categoryName ? (
+                    <h4 className='subtitle'> Current category is {categoryName} </h4>
+                  ) : (
+                    <h4 className='subtitle'> Not assigned to a category! </h4>
+                  )}
                   <CategorySelections categories={categories}/>
                 </>
               )}

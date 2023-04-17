@@ -16,4 +16,4 @@ https://famous-halva-3c1d01.netlify.app/
 ## Challenge Task
 
 * I started the challenge task: Yes
-* I completed the challenge task: Not completely - the only thing I haven't done is add a way for a user to delete categories. Everything else is implemented.
+* I completed the challenge task: Yes

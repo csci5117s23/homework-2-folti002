@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { getAllDoneTodoItems } from '@/modules/data';
 import { useAuth } from '@clerk/nextjs';
 import GeoDoListLayout from '@/features/GeoDoListLayout';
-import CategoryList from '@/features/CategoryList';
 import { getAllCategories } from '@/modules/data';
 import { postNewCategory } from '@/modules/data';
+import CategoryList from '@/features/CategoryList';
 
 // Grabs data for all done todos and displays them
 // along with all categories
@@ -35,7 +35,7 @@ export default function DoneTodos() {
       setNewCategory(false);
     }
     fetchData();
-  }, [newTodoItem, newCategory]);
+  }, [newTodoItem, loading]);
 
   // Add new category and reload list of categories
   async function handleNewCategory(e) {
@@ -69,14 +69,15 @@ export default function DoneTodos() {
       />
 
       <div className='todolist-container'>
-      <h1 className='title'> Categories </h1>
-      <CategoryList 
-        loading={loading}
-        categories={categories}
-        handleNewCategory={handleNewCategory} 
-        isDone={true}
-      />
-    </div>
+        <h1 className='title'> Categories </h1>
+        <CategoryList 
+          loading={loading}
+          categories={categories}
+          handleNewCategory={handleNewCategory} 
+          isDone={true}
+          setLoading={setLoading}
+        />
+      </div>
   </>
   );
 }

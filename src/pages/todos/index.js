@@ -46,7 +46,7 @@ export default function Todos() {
       setLoading(false);
     }
     fetchData();
-  }, [newTodoItem, newCategory]);
+  }, [newTodoItem, newCategory, loading]);
 
   // Add new entry into the database and reload list of todos
   async function handleNewTodoItem(e) {
@@ -106,6 +106,7 @@ export default function Todos() {
           categories={categories}
           handleNewCategory={handleNewCategory} 
           isDone={false}
+          setLoading={setLoading}
         />
       </div>
     </>

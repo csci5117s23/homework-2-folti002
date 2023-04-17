@@ -25,7 +25,6 @@ export default function TodoItemContent() {
 
       // Call REST api and update state
       const response = await getTodoItemById(id, token);
-      console.log(response);
       setData(response);
 
       // Also grab categories from api
@@ -34,7 +33,11 @@ export default function TodoItemContent() {
 
       // And grab the information regarding the current category and store
       const curCategoryName = await getOneCategory(response[0].category, token);
-      setCategoryName(curCategoryName[0].name);
+      if(curCategoryName.length === 0){
+        setCategoryName(null);
+      } else {
+        setCategoryName(curCategoryName[0].name);
+      }
 
       setLoading(false);
     }
